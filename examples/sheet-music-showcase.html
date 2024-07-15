@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--suppress CheckEmptyScriptTag, HtmlUnknownTag -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheet Music Example</title>
+    <script type="module" src="../script/sheet-music.js"></script>
+    <script type="module">
+        import {LitElement, html, css} from '../library/lit.js';
+
+        // noinspection CssUnresolvedCustomProperty,JSUnresolvedReference,JSUnusedGlobalSymbols,CssUnusedSymbol,HtmlUnknownAttribute,JSCheckFunctionSignatures
+        customElements.define('wt-sheet-music-showcase', class extends LitElement {
+            static properties = {};
+
+            constructor() {
+                super();
+                this.song = {
+                    timeSignature: '4/4',
+                    voice: {
+                        num_beats: 8,
+                        beat_value: 4,
+                        notes: [
+                            {keys: ["c/4"], duration: "q"},
+                            {keys: ["c/4"], duration: "q"},
+                            {keys: ["g/4"], duration: "q"},
+                            {keys: ["g/4"], duration: "q"},
+                            {keys: ["a/4"], duration: "q"},
+                            {keys: ["a/4"], duration: "q"},
+                            {keys: ["g/4"], duration: "h"}
+                        ]
+                    }
+                };
+            }
+
+            static styles = css`
+                :host {
+                    display: flex;
+                    box-sizing: border-box;
+                }
+            `;
+
+            render() {
+                return html`
+                    <wt-sheet-music .song="${this.song}"/>
+                    <wt-sheet-music>
+                        <song timeSignature="4/4">
+                            <voice num_beats="8" beat_value="4">
+                                <note keys="c/4" duration="q"></note>
+                                <note keys="c/4" duration="q"></note>
+                                <note keys="g/4" duration="q"></note>
+                                <note keys="g/4" duration="q"></note>
+                                <note keys="a/4" duration="q"></note>
+                                <note keys="a/4" duration="q"></note>
+                                <note keys="g/4" duration="h"></note>
+                            </voice>
+                        </song>
+                    </wt-sheet-music>
+                `;
+            }
+        });
+    </script>
+</head>
+<body>
+<wt-sheet-music-showcase></wt-sheet-music-showcase>
+<wt-sheet-music>
+    <song timeSignature="4/4">
+        <voice num_beats="8" beat_value="4">
+            <note keys="c/4" duration="q"></note>
+            <note keys="c/4" duration="q"></note>
+            <note keys="g/4" duration="q"></note>
+            <note keys="g/4" duration="q"></note>
+            <note keys="a/4" duration="q"></note>
+            <note keys="a/4" duration="q"></note>
+            <note keys="g/4" duration="h"></note>
+        </voice>
+    </song>
+</wt-sheet-music>
+</body>
+</html>
